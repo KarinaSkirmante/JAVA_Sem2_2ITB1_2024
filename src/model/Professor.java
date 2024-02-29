@@ -50,7 +50,35 @@ public class Professor {
 	
 	
 	//3.constructors
+	public Professor() {
+		setpId();
+		setName("Janis");
+		setSurname("Berzins");
+		setDegree(Degree.other);
+	}
+	
+	public Professor(String name, String surname, Degree degree) {
+		setpId();
+		setName(name);
+		setSurname(surname);
+		setDegree(degree);
+	}
+	
 	//4.toString function
+	//generated
+	/*@Override
+	public String toString() {
+		return "Professor [pId=" + pId + ", name=" + name + ", surname=" + surname + ", degree=" + degree + "]";
+	}*/
+		
+	
+	
+	public String toString() {
+		return pId + ":" +degree + ", " + name + " " + surname;
+	}
+	
+	
+	
 	//5.other functions
 	
 	
