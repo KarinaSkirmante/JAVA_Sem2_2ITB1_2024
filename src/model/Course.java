@@ -19,7 +19,6 @@ public class Course {
 		this.cId = counter;
 		counter++;
 	}
-
 	public String getTitle() {
 		return title;
 	}
@@ -52,10 +51,26 @@ public class Course {
 		else
 			this.professor = new Professor();
 	}
-	
-	
-	
 	//3. constructors
+	public Course()
+	{
+		setcId();
+		setTitle("Programmēšana tīmeklī JAVA");
+		setCreditPoints(4);
+		setProfessor(new Professor());
+	}
+	
+	public Course(String title, int creditPoints, Professor professor) {
+		setcId();
+		setTitle(title);
+		setCreditPoints(creditPoints);
+		setProfessor(professor);
+	}
+	
 	//4. toString
+	public String toString() {
+		return cId + ": " + title + "(" + creditPoints + " KP),"+professor;//tiks izsaukta Professor toString funkcija
+	}
+	
 	//5. other functions
 }
