@@ -53,12 +53,28 @@ public class Grade {
 			this.course = new Course();
 	}
 	
-
-	
-	
 	
 	//3. constructors
+	public Grade()
+	{
+		setgId();
+		setGrValue(4);
+		setCourse(new Course());
+		setStudent(new Student());
+	}
+	
+	public Grade(int grValue, Course course, Student student) {
+		setgId();
+		setGrValue(grValue);
+		setCourse(course);
+		setStudent(student);
+	}
 	//4. toString
+	
+	public String toString() {
+		return student.getName() + " " + student.getSurname() + "gets "
+	+ grValue + " in course: " + course.getTitle();
+	}
 	//5 other functions
 
 }
