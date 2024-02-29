@@ -72,7 +72,7 @@ public class Grade {
 	//4. toString
 	
 	public String toString() {
-		return student.getName() + " " + student.getSurname() + "gets "
+		return student.getName() + " " + student.getSurname() + " gets "
 	+ grValue + " in course: " + course.getTitle();
 	}
 	//5 other functions
