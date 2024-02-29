@@ -28,39 +28,25 @@ public class Professor {
 		this.pId = counter;
 		counter++;
 	}
-	
-	
+		
 	public void setName(String name) {
-		if(name != null && name.matches("[A-Z]{1}[a-z]+"))
+		if(name != null && name.matches("[A-ZĒŪĪĻĶĢŠĀČŅ]{1}[a-zēūīļķģšāžčņ]+"))
 			this.name = name;
 		else
-			this.name = "----";
+			this.name = "---";
 	}
 	public void setSurname(String surname) {
-		this.surname = surname;
+		if(surname != null && surname.matches("[A-ZĒŪĪĻĶĢŠĀČŅ]{1}[a-zēūīļķģšāžčņ]+"))
+			this.surname = surname;
+		else
+			this.surname = "---";
 	}
 	public void setDegree(Degree degree) {
-		this.degree = degree;
+		if(degree != null)
+			this.degree = degree;
+		else
+			this.degree = Degree.other;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	//3.constructors
