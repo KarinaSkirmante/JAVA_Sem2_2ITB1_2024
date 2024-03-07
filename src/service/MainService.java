@@ -40,7 +40,7 @@ public class MainService {
 		Course c1 = new Course();
 		Course c2 = new Course("Datu Struktūras un pamatalgoritmi", 2, new ArrayList<Professor>(Arrays.asList(pr2)));
 		Course c3 = new Course("Programmatūras Inženierija I", 2, new ArrayList<Professor>(Arrays.asList(pr2)));
-		Course c4 = new Course("Datorsistēmu arhitektūra un uzbūve", 4, 
+		Course c4 = new Course("Datorsistēmu arhitektūra un uzbūve", 4,
 				new ArrayList<Professor>(Arrays.asList(pr3, pr4)));
 		allCourses.add(c1);
 		allCourses.add(c2);
@@ -49,7 +49,7 @@ public class MainService {
 		for (Course tempC : allCourses) {
 			System.out.println(tempC);
 		}
-		
+
 		Grade gr1 = new Grade();
 		Grade gr2 = new Grade(4, c1, st2);
 		Grade gr3 = new Grade(10, c2, st2);
@@ -70,16 +70,17 @@ public class MainService {
 			System.out.println(
 					st2.getName() + " " + st2.getSurname() + " AVG weighted grade: " + calculateAVGweightedGrade(st2));
 			System.out.println(c2.getTitle() + " AVG grade:" + calculateAVGGradeOfCourse(c2));
+
+			System.out.println( pr2.getName() + " " + pr2.getSurname() +" ->"+ calculateHowManyCourseByProfessor(pr2) + " courses");
 			
-			for(Student tempSt: allStudents)
+			for (Student tempSt : allStudents)
 				System.out.println(tempSt);
 //TODO izprintēt arī pie reizes vid.atzīme
 //TODO izsaukt CRUD funkcijas			
 			ArrayList<Student> sortedStudents = sortStudentsByAVGGrade();
-			for(Student tempSt: sortedStudents)
+			for (Student tempSt : sortedStudents)
 				System.out.println(tempSt);
-			
-			
+
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -159,8 +160,10 @@ public class MainService {
 		int howMany = 0;
 
 		for (Course tempCo : allCourses) {
-			if (tempCo.getProfessor().equals(professor)) {
-				howMany++;
+			for (Professor tempPr : tempCo.getProfessors()) {
+				if (tempPr.equals(professor)) {
+					howMany++;
+				}
 			}
 		}
 
