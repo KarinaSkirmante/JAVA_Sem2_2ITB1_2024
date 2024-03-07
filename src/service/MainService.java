@@ -190,7 +190,7 @@ public class MainService {
 	
 	//TODO retreiveAllStudents - pēc nepieciešamības
 	
-	
+	//update by name and surname
 	public static void updateStudentByNameAndSurname(String name, String surname, String newSurname)
 			throws Exception{
 		if (name == null || surname == null || newSurname == null)
@@ -211,6 +211,27 @@ public class MainService {
 	
 	
 	}
+	
+	//delete by name and surname
+	//TODO ieviest personas kodu, pēc kura dzēst
+	
+	public static void deleteByNameAndSurname(String name, String surname) throws Exception {
+		if (name == null || surname == null)
+			throw new Exception("Problems with input arguments");
+		
+		for(Student tempSt: allStudents) {
+			if (tempSt.getName().equals(name) && tempSt.getSurname().equals(surname)) {
+				allStudents.remove(tempSt);
+				return;
+			}
+		}
+		
+		throw new Exception(name + " " +surname + " is not registered in system");
+		
+	}
+	
+	
+	
 	
 	
 	
