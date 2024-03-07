@@ -170,72 +170,94 @@ public class MainService {
 		allStudents.add(st);
 
 	}
-	
-	//retrieve by surname
-	//TODO atgriezt pēc personas koda
+
+	// retrieve by surname
+	// TODO atgriezt pēc personas koda
 	public static Student retrieveStudentBySurname(String surname) throws Exception {
-		if (surname == null) throw new Exception("Problems with input arguments");
-		
+		if (surname == null)
+			throw new Exception("Problems with input arguments");
+
 		for (Student tempSt : allStudents) {
-			if (tempSt.getSurname().equals(surname))
-			{
+			if (tempSt.getSurname().equals(surname)) {
 				return tempSt;
 			}
 		}
-		
+
 		throw new Exception(surname + " is not registered in system");
-		
-		
+
 	}
-	
-	//TODO retreiveAllStudents - pēc nepieciešamības
-	
-	//update by name and surname
-	public static void updateStudentByNameAndSurname(String name, String surname, String newSurname)
-			throws Exception{
+
+	// TODO retreiveAllStudents - pēc nepieciešamības
+
+	// update by name and surname
+	public static void updateStudentByNameAndSurname(String name, String surname, String newSurname) throws Exception {
 		if (name == null || surname == null || newSurname == null)
 			throw new Exception("Problems with input arguments");
-		
+
 		for (Student tempSt : allStudents) {
 			if (tempSt.getName().equals(name) && tempSt.getSurname().equals(surname)) {
-				if(!surname.equals(newSurname))
-				{
-						tempSt.setSurname(newSurname);
-						return;
+				if (!surname.equals(newSurname)) {
+					tempSt.setSurname(newSurname);
+					return;
 				}
 			}
-		
+
 		}
-		
-		throw new Exception(name + " " +surname + " is not registered in system");
-	
-	
+
+		throw new Exception(name + " " + surname + " is not registered in system");
+
 	}
-	
-	//delete by name and surname
-	//TODO ieviest personas kodu, pēc kura dzēst
-	
+
+	// delete by name and surname
+	// TODO ieviest personas kodu, pēc kura dzēst
+
 	public static void deleteByNameAndSurname(String name, String surname) throws Exception {
 		if (name == null || surname == null)
 			throw new Exception("Problems with input arguments");
-		
-		for(Student tempSt: allStudents) {
+
+		for (Student tempSt : allStudents) {
 			if (tempSt.getName().equals(name) && tempSt.getSurname().equals(surname)) {
 				allStudents.remove(tempSt);
 				return;
 			}
 		}
-		
-		throw new Exception(name + " " +surname + " is not registered in system");
-		
+
+		throw new Exception(name + " " + surname + " is not registered in system");
+
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
+	// TODO pieliekt argumentu - augošā vai dilstošā secība
+	public static ArrayList<Student> sortStudentsByAVGGrade() {
+
+		ArrayList<Student> result = new ArrayList<Student>();
+
+		for (Student tempSt : allStudents) {
+			try {
+				calculateAVGgrade(tempSt);
+				result.add(tempSt);
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+		}
+
+		for (int i = 0; i < result.size(); i++) {
+			for (int j = 0; j < result.size(); j++) {
+				try {
+					if (calculateAVGgrade(result.get(i)) < calculateAVGgrade(result.get(j))) {
+						Student temp = result.get(i);
+						result.set(i, result.get(j));
+						result.set(j, temp);
+
+					}
+				} catch (Exception e) {
+					System.out.println(e);
+				}
+
+			}
+		}
+
+		return result;
+
+	}
 
 }
