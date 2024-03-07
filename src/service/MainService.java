@@ -20,6 +20,7 @@ public class MainService {
 	private static ArrayList<Grade> allGrades = new ArrayList<Grade>();
 
 	public static void main(String[] args) {
+		
 		Professor pr1 = new Professor();
 		Professor pr2 = new Professor("Karina", "Šķirmante", Degree.mg);
 		allPersons.add(pr1);

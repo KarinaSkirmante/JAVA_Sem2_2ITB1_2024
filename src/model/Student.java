@@ -32,7 +32,7 @@ public class Student extends Person{
 	}
 	//4.toString
 	public String toString() {
-		return sId + ":" + super.toString();
+		return "Student ->" + sId + ":" + super.toString();
 	}
 	//5. other functions
 }

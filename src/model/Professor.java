@@ -57,7 +57,7 @@ public class Professor extends Person {
 	
 	
 	public String toString() {
-		return pId + ":" +degree + ", " + super.toString();//te izsauksies personas kalses toString funkcija
+		return "Professor ->" + pId + ":" +degree + ", " + super.toString();//te izsauksies personas kalses toString funkcija
 	}
 	
 	
