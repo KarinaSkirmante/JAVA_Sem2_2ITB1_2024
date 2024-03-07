@@ -62,6 +62,16 @@ public class MainService {
 			System.out.println(
 					st2.getName() + " " + st2.getSurname() + " AVG weighted grade: " + calculateAVGweightedGrade(st2));
 			System.out.println(c2.getTitle() + " AVG grade:" + calculateAVGGradeOfCourse(c2));
+			
+			for(Student tempSt: allStudents)
+				System.out.println(tempSt);
+//TODO izprintēt arī pie reizes vid.atzīme
+//TODO izsaukt CRUD funkcijas			
+			ArrayList<Student> sortedStudents = sortStudentsByAVGGrade();
+			for(Student tempSt: sortedStudents)
+				System.out.println(tempSt);
+			
+			
 		} catch (Exception e) {
 			System.out.println(e);
 		}

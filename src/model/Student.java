@@ -50,8 +50,8 @@ public class Student {
 		setSurname(surname);
 	}
 	//4.toString
-	/*public String toString() {
+	public String toString() {
 		return sId + ":" + name + " " + surname;
-	}*/
+	}
 	//5. other functions
 }
