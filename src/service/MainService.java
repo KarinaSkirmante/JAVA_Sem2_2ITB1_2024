@@ -1,6 +1,7 @@
 package service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import model.Course;
 import model.Degree;
@@ -18,8 +19,12 @@ public class MainService {
 	public static void main(String[] args) {
 		Professor pr1 = new Professor();
 		Professor pr2 = new Professor("Karina", "Šķirmante", Degree.mg);
+		Professor pr3 = new Professor("Artūrs", "Orbidāns", Degree.mg);
+		Professor pr4 = new Professor("Mārcis", "Naktiņš", Degree.mg);
 		allProfessors.add(pr1);
 		allProfessors.add(pr2);
+		allProfessors.add(pr3);
+		allProfessors.add(pr4);
 		for (Professor tempPro : allProfessors) {
 			System.out.println(tempPro);
 		}
@@ -33,15 +38,18 @@ public class MainService {
 		}
 
 		Course c1 = new Course();
-		Course c2 = new Course("Datu Struktūras un pamatalgoritmi", 2, pr2);
-		Course c3 = new Course("Programmatūras Inženierija I", 2, pr2);
+		Course c2 = new Course("Datu Struktūras un pamatalgoritmi", 2, new ArrayList<Professor>(Arrays.asList(pr2)));
+		Course c3 = new Course("Programmatūras Inženierija I", 2, new ArrayList<Professor>(Arrays.asList(pr2)));
+		Course c4 = new Course("Datorsistēmu arhitektūra un uzbūve", 4, 
+				new ArrayList<Professor>(Arrays.asList(pr3, pr4)));
 		allCourses.add(c1);
 		allCourses.add(c2);
 		allCourses.add(c3);
+		allCourses.add(c4);
 		for (Course tempC : allCourses) {
 			System.out.println(tempC);
 		}
-
+		
 		Grade gr1 = new Grade();
 		Grade gr2 = new Grade(4, c1, st2);
 		Grade gr3 = new Grade(10, c2, st2);

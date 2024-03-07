@@ -1,12 +1,15 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Course {
 
 	//1. variables
 	private long cId;
 	private String title;
 	private int creditPoints;
-	private Professor professor;
+	private ArrayList<Professor> professors = new ArrayList<Professor>();
 	
 	private static long counter = 100000;
 	//2. get and set
@@ -41,15 +44,15 @@ public class Course {
 			this.creditPoints = 2;
 	}
 
-	public Professor getProfessor() {
-		return professor;
+	public ArrayList<Professor> getProfessor() {
+		return professors;
 	}
 
-	public void setProfessor(Professor professor) {
-		if(professor != null)
-			this.professor = professor;
+	public void setProfessors(ArrayList<Professor> professors) {
+		if(professors != null)
+			this.professors = professors;
 		else
-			this.professor = new Professor();
+			this.professors = new ArrayList<Professor>(Arrays.asList(new Professor()));
 	}
 	//3. constructors
 	public Course()
@@ -57,20 +60,36 @@ public class Course {
 		setcId();
 		setTitle("Programmēšana tīmeklī JAVA");
 		setCreditPoints(4);
-		setProfessor(new Professor());
+		ArrayList<Professor> tempProfs = new ArrayList<Professor>(Arrays.asList(new Professor()));
+		setProfessors(tempProfs);
 	}
 	
-	public Course(String title, int creditPoints, Professor professor) {
+	public Course(String title, int creditPoints, ArrayList<Professor> professors) {
 		setcId();
 		setTitle(title);
 		setCreditPoints(creditPoints);
-		setProfessor(professor);
+		setProfessors(professors);
 	}
 	
 	//4. toString
 	public String toString() {
-		return cId + ": " + title + "(" + creditPoints + " KP),"+professor;//tiks izsaukta Professor toString funkcija
+		return cId + ": " + title + "(" + creditPoints + " KP),"+professors;//tiks izsaukta Professor toString funkcija
 	}
 	
 	//5. other functions
+	
+	public void addProfessor(Professor professor) {
+		if(!professors.contains(professor))
+		{
+			professors.add(professor);
+		}
+	}
+	
+	public void removeProfessor(Professor professor) {
+		if(professors.contains(professor))
+		{
+			professors.remove(professor);
+		}
+	}
+	
 }
