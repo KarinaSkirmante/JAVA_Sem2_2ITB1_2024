@@ -36,8 +36,10 @@ public class MainService {
 		
 		Course c1 = new Course();
 		Course c2 = new Course("Datu Struktūras un pamatalgoritmi", 2, pr2);
+		Course c3 = new Course("Programmatūras Inženierija I", 2, pr2);
 		allCourses.add(c1);
 		allCourses.add(c2);
+		allCourses.add(c3);
 		for(Course tempC : allCourses) {
 			System.out.println(tempC);
 		}
@@ -135,6 +137,23 @@ public class MainService {
 		
 	}
 	
+	
+	public static int calculateHowManyCourseByProfessor(Professor professor) throws Exception {
+		if(professor == null) throw new Exception("Problems with input professor");
+		
+		int howMany = 0;
+		
+		for(Course tempCo : allCourses) {
+			if(tempCo.getProfessor().equals(professor)) {
+				howMany++;
+			}
+		}
+		
+		if(howMany == 0) throw new Exception("There are no course for this professor");
+		
+		return howMany;
+		
+	}
 	
 	
 	
