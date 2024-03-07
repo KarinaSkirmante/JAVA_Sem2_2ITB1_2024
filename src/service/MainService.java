@@ -170,5 +170,40 @@ public class MainService {
 		allStudents.add(st);
 
 	}
+	
+	//retrieve by surname
+	//TODO atgriezt pēc personas koda
+	public static Student retrieveStudentBySurname(String surname) throws Exception {
+		if (surname == null) throw new Exception("Problems with input arguments");
+		
+		for (Student tempSt : allStudents) {
+			if (tempSt.getSurname().equals(surname))
+			{
+				return tempSt;
+			}
+		}
+		
+		throw new Exception(surname + " is not registered in system");
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
