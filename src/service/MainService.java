@@ -5,30 +5,31 @@ import java.util.ArrayList;
 import model.Course;
 import model.Degree;
 import model.Grade;
+import model.Person;
 import model.Professor;
 import model.Student;
 
 public class MainService {
 
-	private static ArrayList<Professor> allProfessors = new ArrayList<Professor>();
-	private static ArrayList<Student> allStudents = new ArrayList<Student>();
+	//private static ArrayList<Professor> allProfessors = new ArrayList<Professor>();
+	//private static ArrayList<Student> allStudents = new ArrayList<Student>();
+	private static ArrayList<Person> allPersons = new ArrayList<Person>();
+	
+	
 	private static ArrayList<Course> allCourses = new ArrayList<Course>();
 	private static ArrayList<Grade> allGrades = new ArrayList<Grade>();
 
 	public static void main(String[] args) {
 		Professor pr1 = new Professor();
 		Professor pr2 = new Professor("Karina", "Šķirmante", Degree.mg);
-		allProfessors.add(pr1);
-		allProfessors.add(pr2);
-		for (Professor tempPro : allProfessors) {
-			System.out.println(tempPro);
-		}
-
+		allPersons.add(pr1);
+		allPersons.add(pr2);
 		Student st1 = new Student();
 		Student st2 = new Student("Līga", "Jaukā");
-		allStudents.add(st1);
-		allStudents.add(st2);
-		for (Student tempSt : allStudents) {
+		allPersons.add(st1);
+		allPersons.add(st2);
+		
+		for (Person tempSt : allPersons) {
 			System.out.println(tempSt);
 		}
 
@@ -63,8 +64,13 @@ public class MainService {
 					st2.getName() + " " + st2.getSurname() + " AVG weighted grade: " + calculateAVGweightedGrade(st2));
 			System.out.println(c2.getTitle() + " AVG grade:" + calculateAVGGradeOfCourse(c2));
 			
-			for(Student tempSt: allStudents)
-				System.out.println(tempSt);
+			for(Person tempP: allPersons)
+			{
+				if( tempP instanceof Student)
+				{
+					System.out.println(tempP);
+				}
+			}
 //TODO izprintēt arī pie reizes vid.atzīme
 //TODO izsaukt CRUD funkcijas			
 			ArrayList<Student> sortedStudents = sortStudentsByAVGGrade();
@@ -170,14 +176,15 @@ public class MainService {
 		if (name == null || surname == null)
 			throw new Exception("Problems with input arguments");
 
-		for (Student tempSt : allStudents) {
-			if (tempSt.getName().equals(name) && tempSt.getSurname().equals(surname)) {
+		for (Person tempSt : allPersons) {
+			if (tempSt.getName().equals(name) && tempSt.getSurname().equals(surname) 
+					&& tempSt instanceof Student) {
 				throw new Exception(name + " " + surname + " is already registered");
 			}
 		}
 
 		Student st = new Student(name, surname);
-		allStudents.add(st);
+		allPersons.add(st);
 
 	}
 
@@ -187,9 +194,9 @@ public class MainService {
 		if (surname == null)
 			throw new Exception("Problems with input arguments");
 
-		for (Student tempSt : allStudents) {
-			if (tempSt.getSurname().equals(surname)) {
-				return tempSt;
+		for (Person tempSt : allPersons) {
+			if (tempSt.getSurname().equals(surname) && tempSt instanceof Student) {
+				return (Student)tempSt;
 			}
 		}
 
@@ -204,8 +211,8 @@ public class MainService {
 		if (name == null || surname == null || newSurname == null)
 			throw new Exception("Problems with input arguments");
 
-		for (Student tempSt : allStudents) {
-			if (tempSt.getName().equals(name) && tempSt.getSurname().equals(surname)) {
+		for (Person tempSt : allPersons) {
+			if (tempSt.getName().equals(name) && tempSt.getSurname().equals(surname) && tempSt instanceof Student ) {
 				if (!surname.equals(newSurname)) {
 					tempSt.setSurname(newSurname);
 					return;
@@ -225,9 +232,9 @@ public class MainService {
 		if (name == null || surname == null)
 			throw new Exception("Problems with input arguments");
 
-		for (Student tempSt : allStudents) {
-			if (tempSt.getName().equals(name) && tempSt.getSurname().equals(surname)) {
-				allStudents.remove(tempSt);
+		for (Person tempSt : allPersons) {
+			if (tempSt.getName().equals(name) && tempSt.getSurname().equals(surname) &&  tempSt instanceof Student) {
+				allPersons.remove(tempSt);
 				return;
 			}
 		}
@@ -241,12 +248,16 @@ public class MainService {
 
 		ArrayList<Student> result = new ArrayList<Student>();
 
-		for (Student tempSt : allStudents) {
+		for (Person tempSt : allPersons) {
+			
+			if(tempSt instanceof Student)
+			{
 			try {
-				calculateAVGgrade(tempSt);
-				result.add(tempSt);
+				calculateAVGgrade((Student)tempSt);
+				result.add((Student)tempSt);
 			} catch (Exception e) {
 				System.out.println(e);
+			}
 			}
 		}
 
