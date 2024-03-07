@@ -188,18 +188,29 @@ public class MainService {
 		
 	}
 	
+	//TODO retreiveAllStudents - pēc nepieciešamības
 	
 	
+	public static void updateStudentByNameAndSurname(String name, String surname, String newSurname)
+			throws Exception{
+		if (name == null || surname == null || newSurname == null)
+			throw new Exception("Problems with input arguments");
+		
+		for (Student tempSt : allStudents) {
+			if (tempSt.getName().equals(name) && tempSt.getSurname().equals(surname)) {
+				if(!surname.equals(newSurname))
+				{
+						tempSt.setSurname(newSurname);
+						return;
+				}
+			}
+		
+		}
+		
+		throw new Exception(name + " " +surname + " is not registered in system");
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	}
 	
 	
 	
