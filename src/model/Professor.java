@@ -1,10 +1,10 @@
 package model;
 
-public class Professor {
+public class Professor extends Person {
 	//1.variables
 	private long pId;
-	private String name;
-	private String surname;
+
+	//name and surname will be from Person
 	private Degree degree;
 	
 	private static long counter = 0;
@@ -13,12 +13,7 @@ public class Professor {
 	public long getpId() {
 		return pId;
 	}
-	public String getName() {
-		return name;
-	}
-	public String getSurname() {
-		return surname;
-	}
+	
 	public Degree getDegree() {
 		return degree;
 	}
@@ -29,18 +24,7 @@ public class Professor {
 		counter++;
 	}
 		
-	public void setName(String name) {
-		if(name != null && name.matches("[A-ZĒŪĪĻĶĢŠĀČŅ]{1}[a-zēūīļķģšāžčņ]+"))
-			this.name = name;
-		else
-			this.name = "---";
-	}
-	public void setSurname(String surname) {
-		if(surname != null && surname.matches("[A-ZĒŪĪĻĶĢŠĀČŅ]{1}[a-zēūīļķģšāžčņ]+"))
-			this.surname = surname;
-		else
-			this.surname = "---";
-	}
+
 	public void setDegree(Degree degree) {
 		if(degree != null)
 			this.degree = degree;
@@ -51,16 +35,15 @@ public class Professor {
 	
 	//3.constructors
 	public Professor() {
+		super();//te tiek izsaukts Person() konstruktors
 		setpId();
-		setName("Janis");
-		setSurname("Berzins");
 		setDegree(Degree.other);
+
 	}
 	
 	public Professor(String name, String surname, Degree degree) {
+		super(name, surname);//te tiek izsaukts Person(String name, String surname) konstruktors
 		setpId();
-		setName(name);
-		setSurname(surname);
 		setDegree(degree);
 	}
 	
@@ -74,7 +57,7 @@ public class Professor {
 	
 	
 	public String toString() {
-		return pId + ":" +degree + ", " + name + " " + surname;
+		return pId + ":" +degree + ", " + super.toString();//te izsauksies personas kalses toString funkcija
 	}
 	
 	
